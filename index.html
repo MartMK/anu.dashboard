@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">  
+     <title>Survey</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+    <!-- For material design -->
+    <!-- Font Awesome -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Assistant">
+<!-- MDB -->
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.css"
+rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="../prop 1/css/style.css">
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
+<!-- Material design -->
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
+></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script src="../prop 1/js/donut.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</head>
+<body>
+<header>
+    <!-- Just an image -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="../prop 1/images/DPA_logo.jpg"  alt="">
+    </a>
+  </nav>
+
+  <!-- Second header -->
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+   
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Data Monitoring</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Registration and Awareness</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Voter Expectations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">State of the constituency</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
+  
+  
+  
+     
+  
+        <!-- Avatar -->
+        <a
+          class=" d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+        <img src="../prop 1/images/ezgif.com-gif-maker.gif", height="30px">
+          <img
+            src="../prop 1/images/f489de98e4ac9faba05106867a26ef0a.png"
+            height="50px"
+          
+          />
+        </a>   
+
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+
+
+
+</header>
+<div id="title">
+<div class="container-fluid">
+    <div class="col-md-12">
+
+        <h2>Pre Polling - Citizen Survey for Solomon Islands 
+           
+            
+            2019 </h2>
+    </div>
+</div>
+</div>
+<div id="line-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+      <img src="../prop 1/images/Titles.drawio.png">
+      <div class="card">
+        <canvas id="line-chartcanvas"></canvas>
+      </div>
+ 
+        <script>
+          var ctx = $("#line-chartcanvas");
+          //options
+          var options = {
+            responsive: true,
+            title: {
+              display: true,
+              position: "top",
+              text: "Line Graph",
+              fontSize: 18,
+              fontColor: "#111"
+            },
+            legend: {
+              display: true,
+              position: "bottom",
+              labels: {
+                fontColor: "#333",
+                fontSize: 16
+              }
+            }
+          };
+
+        </script>
+        <script>
+          $(function(){
+
+//get the line chart canvas
+var ctx = $("#line-chartcanvas");
+
+//line chart data
+var data = {
+  labels: ["24/03/2019", "25/03/2019", "26/03/2019", "27/03/2019", "28/03/2019", "29/03/2019", "30/03/2019","31/03/2019", "01/04/2019", "02/04/2019", "03/04/2019","04/04/2019", "05/04/2019", "06/04/2019", "07/04/2019", "08/04/2019", "09/04/2019", "10/04/2019","11/04/2019", "12/04/2019"],
+  datasets: [
+    {
+      label: "Aoke Langalanga",
+      data: [0, 0, 0, 0, 18, 10, 0, 41, 9, 8, 28, 38, 0, 0, 0, 0, 0, 7, 1, 1],
+      backgroundColor: "#221A99",
+      borderColor: "#221A99",
+      fill: false,
+      lineTension: 0,
+      radius: 5
+    },
+    {
+      label: "Central Guadalcanal",
+      data: [0, 0, 20, 24, 23, 4, 0, 21, 12, 0, 0, 19, 57, 0, 0, 0, 2, 9, 1, 0],
+      backgroundColor: "#003B4A",
+      borderColor: "#003B4A",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Central Guadalcanal",
+      data: [0, 0, 20, 24, 23, 4, 0, 21, 12, 0, 0, 19, 57, 0, 0, 0, 2, 9, 1, 0],
+      backgroundColor: "#E66EB2",
+      borderColor: "#E66EB2",
+      fill: false,
+      lineTension: 0,
+      radius: 5
+    },
+    {
+      label: "Central Honiara",
+      data: [8, 26, 30, 16, 27, 32, 27, 7, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      backgroundColor: "#FFDF51",
+      borderColor: "#FFDF51",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Central Makira",
+      data: [16, 32, 11, 14, 5, 3, 13, 0, 0, 0, 0, 17, 0, 0, 0, 2, 0, 41, 0, 5],
+      backgroundColor: "#96D678",
+      borderColor: "#96D678",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Central Makira",
+      data: [16, 32, 11, 14, 5, 3, 13, 0, 0, 0, 0, 17, 0, 0, 0, 2, 0, 41, 0, 5],
+      backgroundColor: "#B54CCF",
+      borderColor: "#B54CCF",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "East Guadalcanal",
+      data: [0, 0, 0, 0, 0, 0, 0, 43, 41, 0, 0, 0, 83, 6, 0, 10, 0, 0, 0, 0],
+      backgroundColor: "#FF6541",
+      borderColor: "#FF6541",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "East Honiara",
+      data: [0, 16, 3, 27, 9, 25, 16, 2, 58, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+      backgroundColor: "#694D0E",
+      borderColor: "#694D0E",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Gao Bugotu",
+      data: [0, 0, 0, 0, 45, 0, 0, 0, 29, 43, 8, 3, 0, 0, 0, 0, 0, 1, 0, 0],
+      backgroundColor: "#E8FFDA",
+      borderColor: "#E8FFDA",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Gizo Kolombangara",
+      data: [0, 7, 0, 0, 0, 0, 0, 1, 2, 2, 40, 1, 14, 28, 19, 0, 0, 37, 12, 0],
+      backgroundColor: "#9BBBCF",
+      borderColor: "#9BBBCF",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Lau Mbaelelea",
+      data: [0, 20, 34, 29, 4, 8, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      backgroundColor: "#5EFFBC",
+      borderColor: "#5EFFBC",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Maringe Kokota",
+      data: [0, 0, 0, 3, 8, 19, 4, 3, 41, 6, 0, 0, 0, 0, 40, 36, 0, 0, 0, 2],
+      backgroundColor: "#B0AF87",
+      borderColor: "#B0AF87",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "North Vella Lavella",
+      data: [0, 0, 25, 12, 48, 11, 32, 4, 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      backgroundColor: "#CFC1FF",
+      borderColor: "#CFC1FF",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+
+    },
+    {
+      label: "Russell Savo",
+      data: [0, 0, 0, 0, 11, 7, 33, 21, 25, 17, 0, 15, 8, 11, 0, 0, 12, 0, 0, 1],
+      backgroundColor: "#FAFF35",
+      borderColor: "#FAFF35",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "Small Malaita",
+      data: [0, 0, 1, 8, 32, 48, 17, 10, 6, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0],
+      backgroundColor: "#369952",
+      borderColor: "#369952",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    },
+    {
+      label: "West Honiara",
+      data: [0, 0, 24, 27, 32, 1, 9, 4, 44, 36, 5, 12, 0, 0, 0, 0, 0, 0, 0, 0],
+      backgroundColor: "#0080FF",
+      borderColor: "#0080FF",
+      fill: false,
+      lineTension: 0,
+      radius: 5,
+      hidden: true
+    }
+  ]
+};
+
+//options
+var options = {
+  responsive: true,
+  title: {
+    display: true,
+    position: "top",
+    text: "Line Graph",
+    fontSize: 18,
+    fontColor: "#111"
+  },
+  legend: {
+    display: true,
+    position: "bottom",
+    labels: {
+      fontColor: "#333",
+      fontSize: 16
+    }
+  },
+  showAllTooltips: true
+};
+
+//create Chart class object
+var chart = new Chart(ctx, {
+  type: "line",
+  data: data,
+  options: options
+});
+});e
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<hr>
+<div id="piez">  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="../prop 1/images/Titles.drawio2.png">
+              <div class="accordion" id="accordionExample" style="margin-top: 20px;">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Age Group: 18-29
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img src="../prop 1/images/young.png" class="img-fluid">
+                        </div>
+                        <div class="col-md-8">
+                          <p>30% of the participants were of this age.</p>
+
+                        </div>
+                      </div>
+                     </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Age Group: 30-59
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img src="../prop 1/images/mid.png" class="img-fluid">
+                        </div>
+                        <div class="col-md-8">
+                          <p>60% of the participants were of this age.</p>
+
+                        </div>
+                      </div>
+
+                     </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Age Group: 60+
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <img src="../prop 1/images/old.png" class="img-fluid">
+                        </div>
+                        <div class="col-md-8">
+                          <p>30% of the participants were of this age.</p>
+
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+             
+            
+            
+            
+            
+            
+            
+            
+            </div>
+            <div class="col-md-6">
+              <canvas id="myChart" height="300", width="300"></canvas>
+              <script>
+
+                var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                    labels: ['18-29', '30-59', '60+'],
+                    datasets: [{
+                      label: 'Age Group Participation',
+                      data: [9.928, 19.7268, 4.3452],
+                      backgroundColor: [
+                        'rgba(64, 72, 152)',
+                        'rgba(155, 162, 232)',
+                        'rgba(122,126,170)'
+                      ],
+                      borderColor: [
+                        'rgba(64, 72, 152 ,1)',
+                        'rgba(155,162,232, 1)',
+                        'rgba(122,126,170, 1)'
+                        
+                      ],
+                      borderWidth: 1
+                    }]
+                  },
+                  options: {
+                     //cutoutPercentage: 40,
+                    responsive: false,
+                    showAllTooltips: true
+                
+                  }
+                });
+                
+                          </script>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+
+
+
+
+      <div class="col-md-6"> 
+          
+        <!-- Image Map Generated by http://www.image-map.net/ -->
+
+
+
+
+
+
+
+</div>
+      
+    </div>
+  </div>
+</div>
+<hr>
+<div id="piez">  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-1">
+       
+
+      </div>
+      <div class="col-md-10">
+        <div id="gen-card", class="card">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <img src="../prop 1/images/Gender.png">
+                <h3 style="font-weight: bold;">Gender Proportions for Pre-Polling survey</h3>
+                <p>In the pre polling event more women were involved as majority of them
+                are community leaders and were obliged to represent their communities.</p>
+
+              </div>
+              <div class="col-md-6">
+                
+                <canvas id="myChart2"></canvas>  
+              </div>
+            </div>
+          </div>
+          
+          
+          
+        </div>
+       
+          
+      </div>
+      <div class="col-md-2">        
+            
+      </div>
+    <div class="col-md-6">
+        <div class="container">
+         
+          
+          <script>
+           var ctx = document.getElementById("myChart2");
+var myChart2 = new Chart(ctx, {
+  type: 'pie',
+  showAllTooltips: true,
+  data: {
+    labels: ['Male', 'Female'],
+    datasets: [{
+      label: '# of Tomatoes',
+      data: [12, 19],
+      backgroundColor: [
+        'rgba(64,72,152)',
+        'rgba(155,162,232)'
+      ],
+      borderColor: [
+        'rgba(64,72,152,1)',
+        'rgba(155,162,232, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+   	//cutoutPercentage: 40,
+    responsive: false,
+    showAllTooltips: true
+
+  }
+});
+Chart.pluginService.register({
+			beforeRender: function (chart) {
+				if (chart.config.options.showAllTooltips) {
+					// create an array of tooltips
+					// we can't use the chart tooltip because there is only one tooltip per chart
+					chart.pluginTooltips = [];
+					chart.config.data.datasets.forEach(function (dataset, i) {
+						chart.getDatasetMeta(i).data.forEach(function (sector, j) {
+							chart.pluginTooltips.push(new Chart.Tooltip({
+								_chart: chart.chart,
+								_chartInstance: chart,
+								_data: chart.data,
+								_options: chart.options,
+								_active: [sector]
+							}, chart));
+						});
+					});
+
+					// turn off normal tooltips
+					chart.options.tooltips.enabled = false;
+				}
+			},
+			afterDraw: function (chart, easing) {
+				if (chart.config.options.showAllTooltips) {
+					// we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+					if (!chart.allTooltipsOnce) {
+						if (easing !== 1)
+							return;
+						chart.allTooltipsOnce = true;
+					}
+
+					// turn on tooltips
+					chart.options.tooltips.enabled = true;
+					Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+						tooltip.initialize();
+						tooltip.update();
+						// we don't actually need this since we are not animating tooltips
+						tooltip.pivot();
+						tooltip.transition(easing).draw();
+					});
+					chart.options.tooltips.enabled = false;
+				}
+			}
+		})
+
+		var myPieChart = new Chart(ctx, {
+			type: 'pie',
+			data: data,
+			options: {
+				showAllTooltips: true
+			}
+		});
+
+
+          </script>
+        </div>
+      </div>
+    
+      
+    </div>
+  </div>
+</div>
+<div id="stbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">        
+        <div class="card">
+          <div class="row">
+            <div class="col-md-8">
+              <img class="img-fluid" src="../prop 1/images/stackedbar.png">
+            </div>
+            <div class="col-md-4">
+              <h3>Participation was either by: </h3>
+              <h4 style="color: #9BA2E8; font-weight: bold;">Approached</h4>
+              <p>Where citizens were approached by staff</p>
+              <h4>or</h4>
+              <h4 style="color: #404898; font-weight: bold;">Self-selected</h4>
+              <p>Where citizens excerised their rightt to participate</p>
+
+  
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+
+    </div>
+  </div>
+</div>
+
+<div id="w_distance">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer></footer>
+</body>s
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+body{
+    overflow-x:hidden;
+    font-family: Assistant;
+}
+
+
+#title{
+    
+    height: 15vh;
+    background-image:url(../images/rsz_watercolor_with_blue_detailed_background.jpg);
+    background-repeat: no-repeat;
+   
+    
+}
+#title h2{
+    padding-top: 35px;
+    text-align: center;;
+}
+.table{
+    overflow-x: scroll;
+}
+
+#sam_coll{
+    height: 10vh;
+    width: 100%;
+    background-color: violet;
+}
+#myChart{
+    margin-top: 15vh;
+    margin: auto;
+    padding: auto;
+    position: relative;
+}
+#gender{
+    height: 60vh;
+    width: 100%;
+    background-image: url(../images/ca.drawio.png);
+    background-size: cover;
+    background-position: center;
+}
+#line-section {
+    
+}
+#line-section img{
+    margin: 5px;
+}
+.sam_coll{
+    margin-top: 20px;
+}
+#piez{
+    height: 70vh;
+    width: 100;
+    
+}
+#gen-card{
+    margin: 20px;
+    padding: 15px;
+}
+.card{
+    padding: 18px;
+}
