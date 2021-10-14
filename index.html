@@ -339,6 +339,8 @@ var data = {
 //options
 var options = {
   responsive: true,
+  maintainAspectRatio: true,
+  aspectRatio: 2,
   title: {
     display: true,
     position: "top",
@@ -778,10 +780,10 @@ window.onload = function() {
                       <div class="row">
                         <div class="col-md-6">
                           <h4>General</h4>
-                          <h6 style="color: #9BA2E8; font-weight: bold;">Less than 20mins</h6>
-                          <p>Where citizens were approached by staff</p>          
                           <h6 style="color: #404898; font-weight: bold;">5-10 mins</h6>
-                          <p>Where citizens excerised their rightt to participate</p>
+                          <p>Polling stations were setup in schools</p>
+                          <h6 style="color: #9BA2E8; font-weight: bold;">Less than 20mins</h6>
+                          <p>Where citizens were approached by staff</p>                          
                           <h6 style="color: #7a7eaa; font-weight: bold;">Greater than 20 mins</h6>
                           <p>Where citizens excerised their rightt to participate</p>
             
@@ -1001,17 +1003,243 @@ window.onload = function() {
 
 <div id="w_distance">
   <div class="container">
+    
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
-     
-        <div class="container">
-          <div class="row">
-            <div class="col-6">
-              
+        <div class="card mt-3 tab-card">
+          <div class="card-header tab-card-header">
+            <h4 style="color: #404898; font-weight: bold;">Do you Know where to vote in the constituency </h4>
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link active" id="one-tab" data-toggle="tab" href="#v_one" role="tab" aria-controls="One" aria-selected="true">General</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="two-tab" data-toggle="tab" href="#v_two" role="tab" aria-controls="Two" aria-selected="false">By Constituency</a>
+              </li>
+              <li class="nav-item">
+                  <!-- <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Three</a> -->
+              </li>
+            </ul>
+          </div>
+        
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active p-3" id="v_one" role="tabpanel" aria-labelledby="one-tab">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="container-fluid card">
+                      <div class="row">                       
+                        <div class="col-md-6">
+                          <canvas id="myChart_v"></canvas> 
+                            <script>
+                             var ctx = document.getElementById("myChart_v");
+                  var myChart2 = new Chart(ctx, {
+                    type: 'doughnut',
+                    showAllTooltips: true,
+                    data: {
+                      labels: ['Yes', 'No'],
+                      datasets: [{
+                        label: '# of Tomatoes',
+                        data: [97.06,2.94],
+                        backgroundColor: [
+                          'rgba(64,72,152)',
+                          'rgba(155,162,232)'
+                        ],
+                        borderColor: [
+                          'rgba(64,72,152,1)',
+                          'rgba(155,162,232, 1)'
+                        ],
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                       //cutoutPercentage: 40,
+                      responsive: false,
+                      showAllTooltips: true
+                  
+                    }
+                  });
+                  Chart.pluginService.register({
+                        beforeRender: function (chart) {
+                          if (chart.config.options.showAllTooltips) {
+                            // create an array of tooltips
+                            // we can't use the chart tooltip because there is only one tooltip per chart
+                            chart.pluginTooltips = [];
+                            chart.config.data.datasets.forEach(function (dataset, i) {
+                              chart.getDatasetMeta(i).data.forEach(function (sector, j) {
+                                chart.pluginTooltips.push(new Chart.Tooltip({
+                                  _chart: chart.chart,
+                                  _chartInstance: chart,
+                                  _data: chart.data,
+                                  _options: chart.options,
+                                  _active: [sector]
+                                }, chart));
+                              });
+                            });
+                  
+                            // turn off normal tooltips
+                            chart.options.tooltips.enabled = false;
+                          }
+                        },
+                        afterDraw: function (chart, easing) {
+                          if (chart.config.options.showAllTooltips) {
+                            // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+                            if (!chart.allTooltipsOnce) {
+                              if (easing !== 1)
+                                return;
+                              chart.allTooltipsOnce = true;
+                            }
+                  
+                            // turn on tooltips
+                            chart.options.tooltips.enabled = true;
+                            Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+                              tooltip.initialize();
+                              tooltip.update();
+                              // we don't actually need this since we are not animating tooltips
+                              tooltip.pivot();
+                              tooltip.transition(easing).draw();
+                            });
+                            chart.options.tooltips.enabled = false;
+                          }
+                        }
+                      })
+                  
+                      var myPieChart = new Chart(ctx, {
+                        type: 'donought',
+                        data: data,
+                        options: {
+                          showAllTooltips: true
+                        }
+                      });
+                  
+                  
+                            </script>
+                        </div>
+                        <div class="col-md-6">
+                          <h4>General</h4>
+                          <h6 style="color: #404898; font-weight: bold;">Yes</h6>
+                          <p>Polling stations were setup in schools</p>
+                          <h6 style="color: #9BA2E8; font-weight: bold;">No</h6>
+                          <p>Where citizens were approached by staff</p>                          
+                          
+            
+                        </div>
+            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>             
             </div>
+            <div class="tab-pane fade p-3" id="v_two" role="tabpanel" aria-labelledby="two-tab">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <canvas id="canvas_v"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div id="container">
+               
+                <script>
+                  var barChartData_v = {
+  labels: [
+    "East Honiara",
+    "West Honiara",
+    "Central Guada",
+    "Central Honiara",
+    "East Guadalcanal",
+    "Gizo Kolomban",
+    "Maringe kokota",
+    "Aoke Langalanga",
+    "North Vella",
+    "Russell Savo",
+    "Central Makira",
+    "Lau Mbaelelea",
+    "Small Malaita",
+    "Gao Bugotu",
+    "North West"
+
+  ],
+
+                        
+                       
+  datasets: [
+    {
+      label: "5-10mins",
+      backgroundColor:   'rgba(64, 72, 152)',
+      borderColor:   'rgba(64, 72, 152)',
+      borderWidth: 1,
+      data: [71,64,93,89,44,67,65,71,116,50,84,85,89,67,75]
+    },
+    {
+      label: "Less than 20 mins",
+      backgroundColor: 'rgba(155, 162, 232)',
+      borderColor: 'rgba(155, 162, 232)',
+      borderWidth: 1,
+      data: [42,45,28,35,81,76,55,80,40,58,55,77,54,116,91]
+    },
+    {
+      label: "Greater than 20 mins",
+      backgroundColor:  'rgba(122,126,170)',
+      borderColor:  'rgba(122,126,170)',
+      borderWidth: 1,
+      data: [15,10,10,13,34,18,41,10,6,55,44,29,49,11,31]
+    }
+  ]
+};
+
+var chartOptions = {
+  responsive: true,
+  legend: {
+    position: "top"
+  },
+  title: {
+    display: true,
+    text: "Chart.js Bar Chart"
+  },
+  scales: {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]
+  }
+}
+
+window.onload = function() {
+  var ctx = document.getElementById("canvas_v").getContext("2d");
+  window.myBar = new Chart(ctx, {
+    type: "bar",
+    data: barChartData,
+    options: chartOptions
+  });
+};
+
+                </script>
+                
+             
+                
+                
+              </div>
+
+              
+                       
+            </div>
+            <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+              <h5 class="card-title">Tab Card Three</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>              
+            </div>
+        
           </div>
         </div>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -1049,9 +1277,28 @@ window.onload = function() {
 
 
 
+<div id="kpi">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+     
+         
+      </div>
 
+    </div>
+  </div>
+</div>
 
-    <footer></footer>
+<footer class="bg-dark text-center text-white">  
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <p>Powered by Akvo.</p>
+    <p>Some rights reserved</p>
+   
+  </div>
+  <!-- Copyright -->
+</footer>
 </body>
 <script>
   var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
