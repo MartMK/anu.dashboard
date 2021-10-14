@@ -37,6 +37,7 @@ rel="stylesheet"
 
 
 
+
 </head>
 <body>
 <header>
@@ -390,7 +391,7 @@ var chart = new Chart(ctx, {
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                     
                     </div>
                   </div>
                 </div>
@@ -402,7 +403,7 @@ var chart = new Chart(ctx, {
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    
                     </div>
                   </div>
                 </div>
@@ -414,7 +415,7 @@ var chart = new Chart(ctx, {
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                      <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                      
                     </div>
                   </div>
                 </div>
@@ -646,15 +647,250 @@ Chart.pluginService.register({
   </div>
 </div>
 
-<div id="w_distance">
+<div id="count_by_age">
   <div class="container">
+    <div class="row">
+     
+      <div class="col-md-12">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+              <div id="container">
+                <h4 style="color: #404898; font-weight: bold; text-align: left;">Count by Age Group</h4>
+                <canvas id="canvasb"></canvas>
+                <script>
+                  var barChartData = {
+  labels: [
+    "East Honiara",
+    "West Honiara",
+    "Central Guada",
+    "Central Honiara",
+    "East Guadalcanal",
+    "Gizo Kolomban",
+    "Maringe kokota",
+    "Aoke Langalanga",
+    "North Vella",
+    "Russell Savo",
+    "Central Makira",
+    "Lau Mbaelelea",
+    "Small Malaita",
+    "Gao Bugotu",
+    "North West"
+
+  ],
+
+                        
+                       
+  datasets: [
+    {
+      label: "18-29",
+      backgroundColor:   'rgba(64, 72, 152)',
+      borderColor:   'rgba(64, 72, 152)',
+      borderWidth: 1,
+      data: [64,73,64,70,49,52,46,48,34,50,42,33,34,21,35]
+    },
+    {
+      label: "30-59",
+      backgroundColor: 'rgba(155, 162, 232)',
+      borderColor: 'rgba(155, 162, 232)',
+      borderWidth: 1,
+      data: [104,112,110,111,113,103,64,90,97,91,101,84,80,84,77]
+    },
+    {
+      label: "60+",
+      backgroundColor:  'rgba(122,126,170)',
+      borderColor:  'rgba(122,126,170)',
+      borderWidth: 1,
+      data: [29,9,18,10,21,8,52,23,30,20,16,20,17,24,16]
+    }
+  ]
+};
+
+var chartOptions = {
+  responsive: true,
+  legend: {
+    position: "top"
+  },
+  title: {
+    display: true,
+    text: "Chart.js Bar Chart"
+  },
+  scales: {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]
+  }
+}
+
+window.onload = function() {
+  var ctx = document.getElementById("canvasb").getContext("2d");
+  window.myBar = new Chart(ctx, {
+    type: "bar",
+    data: barChartData,
+    options: chartOptions
+  });
+};
+
+                </script>
+              </div>
+            </div>
+            <div class="col-md-1"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div id="travel">
+  <div class="container">
+    
     <div class="row">
       <div class="col-md-1"></div>
       <div class="col-md-10">
-        <div class="card">
-          <div class="row">
-            <div class="col-md-6"></div>
-            <div class="col-md-6"></div>
+        <div class="card mt-3 tab-card">
+          <div class="card-header tab-card-header">
+            <h4 style="color: #404898; font-weight: bold;">Time taken to the polling station </h4>
+            <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link active" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">General</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">By Constituency</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" id="three-tab" data-toggle="tab" href="#three" role="tab" aria-controls="Three" aria-selected="false">Three</a>
+              </li>
+            </ul>
+          </div>
+        
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="container-fluid card">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <h4>General</h4>
+                          <h6 style="color: #9BA2E8; font-weight: bold;">Less than 20mins</h6>
+                          <p>Where citizens were approached by staff</p>          
+                          <h6 style="color: #404898; font-weight: bold;">5-10 mins</h6>
+                          <p>Where citizens excerised their rightt to participate</p>
+                          <h6 style="color: #7a7eaa; font-weight: bold;">Greater than 20 mins</h6>
+                          <p>Where citizens excerised their rightt to participate</p>
+            
+                        </div>
+                        <div class="col-md-6">
+                          <canvas id="myChart3"></canvas> 
+                            <script>
+                             var ctx = document.getElementById("myChart3");
+                  var myChart2 = new Chart(ctx, {
+                    type: 'doughnut',
+                    showAllTooltips: true,
+                    data: {
+                      labels: ['Less than 20mins', '5-10 mins', 'Greater than 20 mins'],
+                      datasets: [{
+                        label: '# of Tomatoes',
+                        data: [46.55, 38.1, 15.35],
+                        backgroundColor: [
+                          'rgba(64,72,152)',
+                          'rgba(155,162,232)',
+                          'rgba(122,126,170)'
+                        ],
+                        borderColor: [
+                          'rgba(64,72,152,1)',
+                          'rgba(155,162,232, 1)',
+                          'rgba(122,126,170, 1)'
+                        ],
+                        borderWidth: 1
+                      }]
+                    },
+                    options: {
+                       //cutoutPercentage: 40,
+                      responsive: false,
+                      showAllTooltips: true
+                  
+                    }
+                  });
+                  Chart.pluginService.register({
+                        beforeRender: function (chart) {
+                          if (chart.config.options.showAllTooltips) {
+                            // create an array of tooltips
+                            // we can't use the chart tooltip because there is only one tooltip per chart
+                            chart.pluginTooltips = [];
+                            chart.config.data.datasets.forEach(function (dataset, i) {
+                              chart.getDatasetMeta(i).data.forEach(function (sector, j) {
+                                chart.pluginTooltips.push(new Chart.Tooltip({
+                                  _chart: chart.chart,
+                                  _chartInstance: chart,
+                                  _data: chart.data,
+                                  _options: chart.options,
+                                  _active: [sector]
+                                }, chart));
+                              });
+                            });
+                  
+                            // turn off normal tooltips
+                            chart.options.tooltips.enabled = false;
+                          }
+                        },
+                        afterDraw: function (chart, easing) {
+                          if (chart.config.options.showAllTooltips) {
+                            // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
+                            if (!chart.allTooltipsOnce) {
+                              if (easing !== 1)
+                                return;
+                              chart.allTooltipsOnce = true;
+                            }
+                  
+                            // turn on tooltips
+                            chart.options.tooltips.enabled = true;
+                            Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+                              tooltip.initialize();
+                              tooltip.update();
+                              // we don't actually need this since we are not animating tooltips
+                              tooltip.pivot();
+                              tooltip.transition(easing).draw();
+                            });
+                            chart.options.tooltips.enabled = false;
+                          }
+                        }
+                      })
+                  
+                      var myPieChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: data,
+                        options: {
+                          showAllTooltips: true
+                        }
+                      });
+                  
+                  
+                            </script>
+                        </div>
+            
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>             
+            </div>
+            <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+              <h5 class="card-title">Tab Card Two</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>              
+            </div>
+            <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+              <h5 class="card-title">Tab Card Three</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>              
+            </div>
+        
           </div>
         </div>
       </div>
@@ -672,17 +908,72 @@ Chart.pluginService.register({
 
 
 
+<div id="w_distance">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+     
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+      <div class="col-md-1"></div>          
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 
 
 
     <footer></footer>
-</body>s
+</body>
 <script>
-  $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
+  var triggerTabList = [].slice.call(document.querySelectorAll('#myTab a'))
+triggerTabList.forEach(function (triggerEl) {
+var tabTrigger = new bootstrap.Tab(triggerEl)
+
+triggerEl.addEventListener('click', function (event) {
+  event.preventDefault()
+  tabTrigger.show()
+})
 })
 </script>
+
 
 </html>
 
