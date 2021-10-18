@@ -32,7 +32,7 @@ body{
     position: relative;
 }
 #gender{
-    height: 60vh;
+    height: auto;
     width: 100%;
     background-image: url(../images/ca.drawio.png);
     background-size: cover;
@@ -47,9 +47,16 @@ body{
 .sam_coll{
     margin-top: 20px;
 }
+#piez1{
+    margin: 40px;
+    height: auto;
+    width: 100;
+   
+    
+}
 #piez{
-    margin-top: 40px;
-    height: 70vh;
+    margin-top: 50px;
+    height: auto;
     width: 100;
     
 }
@@ -64,6 +71,9 @@ body{
     margin: 20px;
 }
 #w_distance{
+    margin-top: 40px;
+}
+#pat{
     margin-top: 40px;
 }
 
@@ -82,3 +92,11 @@ body{
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: @screen-lg-min) {  }
+
+#intro{
+    margin:40px;
+
+}
+#intro h4{
+    padding-top: 2px;
+}
