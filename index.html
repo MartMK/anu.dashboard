@@ -103,7 +103,7 @@ rel="stylesheet"
           data-mdb-toggle="dropdown"
           aria-expanded="false"
         >
-        <img src="./images/ezgif.com-gif-maker.gif", height="30px">
+        
           <img
             src="./images/f489de98e4ac9faba05106867a26ef0a.png"
             height="50px"
@@ -137,7 +137,7 @@ rel="stylesheet"
     <div class="card">
       <div class="row">
         <div class="col-md-5 intro_p">
-          <h4 style="color: #404898; font-weight: bold;">Introduction</h4>
+          <h4 style="color: #404898; font-weight: bold;">Introduction<img src="./images/ezgif.com-gif-maker.gif", height="30px"></h4>
           <p>In 2019, our team was on the ground in Solomon Islands,
             to conduct a survey to get information citizens participation just before electons.<br>          
           </p>
@@ -523,8 +523,10 @@ var chart = new Chart(ctx, {
                     <div class="container-fluid card">
                       <div class="row">
                         <div class="col-md-6">
-                          <img src="./images/Titles.drawio2.png">
-                          <div class="accordion" id="accordionExample">
+                          <img src="./images/Ree.drawio.png" class="img-fluid", id="info_age">
+                          <p>Citizens during the survey were selected at random and there was no bias used.</p>
+                         
+                          <!-- <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -533,6 +535,7 @@ var chart = new Chart(ctx, {
                               </h2>
                               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body">
+                                  <img src="./images/individual.drawio.png" class="img-fluid">
                                  
                                 </div>
                               </div>
@@ -561,11 +564,14 @@ var chart = new Chart(ctx, {
                                 </div>
                               </div>
                             </div>
-                          </div>     
+                          </div>      -->
                         
                         </div>
                         <div class="col-md-6">
-                          <canvas id="myChart" height="300", width="300"></canvas>
+                          <div class="container">
+                            <canvas id="myChart" height="300", width="300"></canvas>
+                          </div>
+                          
                           <script>
             
                             var ctx = document.getElementById("myChart");
@@ -674,18 +680,15 @@ var chartOptions_b = {
    display: true,
    text: "Chart.js Bar Chart"
  },
- scales: {
-   yAxes: [{
-     ticks: {
-       beginAtZero: true
-     },
-     title: {
-        display: true,
-        text: 'Your Title'
-      }
-
-   }]
- }
+ scales: {x: 
+    { title:
+       { display: true, text: 'Constituencies' }
+      },
+    y:
+    { title:
+       { display: true, text: 'Count' }
+      },
+    }
 }
 // function b() {
 //   var ctx_b = document.getElementById("canvas_b").getContext("2d");
@@ -840,7 +843,7 @@ var chartOptions_b = {
                            </script>  
                         </div>
                         <div class="col-md-6">
-                          <img src="./images/Gender.png">
+                          <img src="./images/Gender.png" class="img-fluid">
                           <h3 style="font-weight: bold;">Gender Proportions for Pre-Polling survey</h3>
                           <p>In the pre polling event more women were involved as majority of them
                           are community leaders and were obliged to represent their communities.</p>
@@ -913,13 +916,15 @@ var chartOptions_g = {
     display: true,
     text: "Chart.js Bar Chart"
   },
-  scales: {
-    yAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
-  }
+  scales: {x: 
+    { title:
+       { display: true, text: 'Constituencies' }
+      },
+    y:
+    { title:
+       { display: true, text: 'Count' }
+      },
+    }
 }
 
 // window.onload = function() {
@@ -990,12 +995,13 @@ var chartOptions_g = {
                     <div class="container-fluid card">
                       <div class="row">
                         <div class="col-md-6">
+                          <img src="./images/counting.png" class="img-fluid">
                           <h3>Participation was either by: </h3>
               <h4 style="color: #9BA2E8; font-weight: bold;">Approached</h4>
               <p>Where citizens were approached by staff</p>
               <h4>or</h4>
               <h4 style="color: #404898; font-weight: bold;">Self-selected</h4>
-              <p>Where citizens excerised their rightt to participate</p>
+              <p>Where citizens excerised their right to participate</p>
                         </div>
                         <div class="col-md-6">
                           
@@ -1151,13 +1157,15 @@ var chartOptions_p = {
     display: true,
     text: "Chart.js Bar Chart"
   },
-  scales: {
-    yAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
-  }
+  scales: {x: 
+    { title:
+       { display: true, text: 'Constituencies' }
+      },
+    y:
+    { title:
+       { display: true, text: 'Count' }
+      },
+    }
 }
 
 // window.onload = function() {
@@ -1323,13 +1331,14 @@ var chartOptions_p = {
                             </script>
                         </div>
                         <div class="col-md-6">
+                          <img src="./images/time.png" class="img-fluid">
                           <h4>General</h4>
                           <h6 style="color: #404898; font-weight: bold;">5-10 mins</h6>
-                          <p>Polling stations were setup in schools</p>
+                          <p>Polling stations were setup in residential areas</p>
                           <h6 style="color: #9BA2E8; font-weight: bold;">Less than 20mins</h6>
-                          <p>Where citizens were approached by staff</p>                          
+                          <p>Polling stations in schools were mostly used</p>                          
                           <h6 style="color: #7a7eaa; font-weight: bold;">Greater than 20 mins</h6>
-                          <p>Where citizens excerised their rightt to participate</p>
+                          <p>Most had to use some form of transport to come to the polling station</p>
             
                         </div>
             
@@ -1406,13 +1415,15 @@ var chartOptionsb = {
     display: true,
     text: "Chart.js Bar Chart"
   },
-  scales: {
-    yAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
-  }
+  scales: {x: 
+    { title:
+       { display: true, text: 'Constituencies' }
+      },
+    y:
+    { title:
+       { display: true, text: 'Count' }
+      },
+    }
 }
 
 // window.onload = function() {
@@ -1488,11 +1499,12 @@ var chartOptionsb = {
                       <div class="row">                       
                         
                         <div class="col-md-6">
+                          <img src="./images/voting-box.png" class="img-fluid center">
                           <h4>General</h4>
                           <h6 style="color: #404898; font-weight: bold;">Yes</h6>
-                          <p>Polling stations were setup in schools</p>
+                          <p>Through local advertisements, the local polling stations location was widely shared.</p>
                           <h6 style="color: #9BA2E8; font-weight: bold;">No</h6>
-                          <p>Where citizens were approached by staff</p>                          
+                          <p>A few citizen still had no clue.</p>                          
                           
             
                         </div>
@@ -1656,13 +1668,16 @@ var chartOptions_v = {
     display: true,
     text: "Chart.js Bar Chart"
   },
-  scales: {
-    yAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
-  }
+  scales: {x: 
+    { title:
+       { display: true, text: 'Constituencies' }
+      },
+    y:
+    { title:
+       { display: true, text: 'Count' }
+      },
+    }
+ 
 }
 
 // var mybarchart_v = new chart(ctx_v, {
@@ -1767,6 +1782,8 @@ var chartOptions_v = {
 <script>
    window.onload = function(){
      //  This is for the v
+
+  
   var ctx_v = document.getElementById("canvas_v").getContext("2d");
   window.myBar = new Chart(ctx_v, {
     type: "bar",
@@ -1797,6 +1814,7 @@ var chartOptions_v = {
     data: barChartData_p,
     options: chartOptions_p
   });
+
 
 
 
