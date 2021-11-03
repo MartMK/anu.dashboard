@@ -113,3 +113,31 @@ body{
     margin-top: 40px;
     
 }
+
+#map{
+    position: absolute;
+    height: 70vh;
+}
+.card{
+    width: 100%;
+    
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+}
+#gen_img{
+    height: 60vh;
+    width: 100%;
+    background-image: url(../images/Gender.drawio.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#age_img{
+    height: 60vh;
+    width: 100%;
+    background-image: url(../images/Ree.drawio.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

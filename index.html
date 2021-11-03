@@ -31,9 +31,21 @@ rel="stylesheet"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"
 ></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script src="./js/donut.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Leaflet CDN -->
+<link rel="stylesheet" href="./css/leaflet.css" />
+<script src="./js/leaflet.js"></script>
+<!-- 
+Highchart Start -->
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<!-- Highchart End -->
+
 
 
 
@@ -147,11 +159,12 @@ rel="stylesheet"
   
   
         </div>
-        <div class="col-md-7">
-          <iframe title="[ Solomon Islands Constituencies]" aria-label="Map" id="datawrapper-chart-EEWgn" src="https://datawrapper.dwcdn.net/EEWgn/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="409"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
-          </script>
-          
-        </div>
+        
+        <div class="col-md-7" >
+          <div id="mp">
+            <iframe title="[ Solomon Islands Constituencies]" aria-label="Map" id="datawrapper-chart-EEWgn" src="https://datawrapper.dwcdn.net/EEWgn/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="409"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            </script>
+          </div>
   
       </div>
 
@@ -166,10 +179,121 @@ rel="stylesheet"
       <div class="card">
         <div id="drake" class="container">
           <h4 style="color: #404898; font-weight: bold;">Daily data collected: Click to view state</h4>
-          <canvas id="line-chartcanvas"></canvas>
+          <div id="line_g"></div>
         </div>
         
       </div>
+      <script>
+        Highcharts.chart('line_g', {
+
+title: {
+  text: ''
+},
+
+subtitle: {
+  text: 'Click on the right to add state'
+},
+
+yAxis: {
+  title: {
+    text: 'Daily Count'
+  }
+},
+
+xAxis: {
+            categories: ["24/03/2019", "25/03/2019", "26/03/2019", "27/03/2019", "28/03/2019", "29/03/2019", "30/03/2019","31/03/2019", "01/04/2019", "02/04/2019", "03/04/2019","04/04/2019", "05/04/2019", "06/04/2019", "07/04/2019", "08/04/2019", "09/04/2019", "10/04/2019","11/04/2019", "12/04/2019"]
+        },
+
+legend: {
+  layout: 'vertical',
+  align: 'right',
+  verticalAlign: 'middle'
+},
+
+plotOptions: {
+  series: {
+    label: {
+      connectorAllowed: false
+    },
+    
+  }
+},
+
+series: [{
+  name: 'Aoke Langalanga',
+  data: [0, 0, 0, 0, 18, 10, 0, 41, 9, 8, 28, 38, 0, 0, 0, 0, 0, 7, 1, 1]
+}, {
+  name: 'Central Guadalcanal',
+  data: [0, 0, 20, 24, 23, 4, 0, 21, 12, 0, 0, 19, 57, 0, 0, 0, 2, 9, 1, 0]  
+}, {
+  name: 'Central Honiara',
+  data: [8, 26, 30, 16, 27, 32, 27, 7, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  visible: false
+}, {
+  name: 'Central Makira',
+  data: [16, 32, 11, 14, 5, 3, 13, 0, 0, 0, 0, 17, 0, 0, 0, 2, 0, 41, 0, 5],
+  visible: false
+}, {
+  name: 'East Guadalcanal',
+  data: [0, 0, 0, 0, 0, 0, 0, 43, 41, 0, 0, 0, 83, 6, 0, 10, 0, 0, 0, 0],
+  visible: false
+},{
+  name: 'East Honiara',
+  data: [0, 16, 3, 27, 9, 25, 16, 2, 58, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+  visible: false
+},{
+  name: 'Gao Bugotu',
+  data: [0, 0, 0, 0, 45, 0, 0, 0, 29, 43, 8, 3, 0, 0, 0, 0, 0, 1, 0, 0],
+  visible: false
+},{
+  name: 'Gizo Kolombangara',
+  data: [0, 7, 0, 0, 0, 0, 0, 1, 2, 2, 40, 1, 14, 28, 19, 0, 0, 37, 12, 0],
+  visible: false
+},{
+  name: 'Lau Mbaelelea',
+  data: [0, 20, 34, 29, 4, 8, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  visible: false  
+},{
+  name: 'Maringe Kokota',
+  data: [0, 0, 0, 3, 8, 19, 4, 3, 41, 6, 0, 0, 0, 0, 40, 36, 0, 0, 0, 2],
+  visible: false
+},{
+  name: 'North Vella Lavella',
+  data: [0, 0, 25, 12, 48, 11, 32, 4, 29, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  visible: false
+},{
+  name: 'Russell Savo',
+  data: [0, 0, 0, 0, 11, 7, 33, 21, 25, 17, 0, 15, 8, 11, 0, 0, 12, 0, 0, 1],
+  visible: false
+},{
+  name: 'Small Malaita',
+  data: [0, 0, 1, 8, 32, 48, 17, 10, 6, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0],
+  visible: false
+},{
+  name: 'West Honiara',
+  data: [0, 0, 24, 27, 32, 1, 9, 4, 44, 36, 5, 12, 0, 0, 0, 0, 0, 0, 0, 0],
+  visible: false
+},],
+
+responsive: {
+  rules: [{
+    condition: {
+      maxWidth: 500
+    },
+    chartOptions: {
+      legend: {
+        layout: 'horizontal',
+        align: 'center',
+        verticalAlign: 'bottom',
+        fontFamily: 'Assistant'
+      }
+    }
+  }]
+}
+
+});
+
+      </script>
  
         <script>
           var ctx = $("#line-chartcanvas");
@@ -193,7 +317,7 @@ rel="stylesheet"
               },
             legend: {
               display: true,
-              position: "bottom",
+              position: 'left',
               labels: {
                 fontColor: "#333",
                 fontSize: 16
@@ -369,7 +493,7 @@ var options = {
   },
   legend: {
     display: true,
-    position: "bottom",
+    position: 'left',
     labels: {
       fontColor: "#333",
       fontSize: 16
@@ -384,7 +508,7 @@ var chart = new Chart(ctx, {
   data: data,
   options: options
 });
-});e
+});
         </script>
       </div>
     </div>
@@ -503,7 +627,7 @@ var chart = new Chart(ctx, {
       <div class="col-md-10">
         <div class="card mt-3 tab-card">
           <div class="card-header tab-card-header">
-            <h4 style="color: #404898; font-weight: bold;">Age groups</h4>
+            <h4 style="color: #404898; font-weight: bold; padding-top: 20px;">Age groups</h4>
             <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
               <li class="nav-item">
                   <a class="nav-link active" id="one-tab" data-toggle="tab" href="#one_age" role="tab" aria-controls="One" aria-selected="true">General</a>
@@ -524,9 +648,20 @@ var chart = new Chart(ctx, {
                   <div class="col-md-12">
                     <div class="container-fluid card">
                       <div class="row">
-                        <div class="col-md-6">
-                          <img src="./images/Ree.drawio.png" class="img-fluid", id="info_age">
-                          <p>Citizens during the survey were selected at random and there was no bias used.</p>
+                        <div class="col-md-5">
+                          <h4 style="color: #404898; font-weight: bold; margin-top: 80px;">Age groups</h4>
+                          <p>Participants of the polling excercise came from all age groups.
+                            Based on the total population it was a good turn out. Lowest age group turn <br>
+                            out was for the age 60+ but that is because most are retired and were at their homes.
+                          </p>
+
+                        </div>
+                        <div class="col-md-7">
+                          <div id="age_img">
+
+                          </div>
+                          <!-- <img src="./images/Ree.drawio.png" class="img-fluid", id="age_img">
+                          <p>Citizens during the survey were selected at random and there was no bias used.</p> -->
                          
                           <!-- <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
@@ -569,7 +704,7 @@ var chart = new Chart(ctx, {
                           </div>      -->
                         
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                           <div class="container">
                             <canvas id="myChart" height="300", width="300"></canvas>
                           </div>
@@ -607,7 +742,7 @@ var chart = new Chart(ctx, {
                             });
                             
                                       </script>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -618,16 +753,28 @@ var chart = new Chart(ctx, {
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <canvas id="canvas_b"></canvas>  
+                   <div id="age_bar"></div>
                   </div>
                 </div>
               </div>
               <div id="container" style="width: 75%;">           
                 
                
-                <script>
-                 var barChartData_b = {
- labels: [
+              <script>
+                var colors = ['#404898','#9BA2E8','#7A7EAA'];
+Highcharts.chart('age_bar', {
+  chart: {
+    type: 'column'
+  },
+  colors: colors,
+  title: {
+    text: 'Age groups per constituency'
+  },
+  subtitle: {
+    text: ''
+  },
+  xAxis: {
+    categories: [
    "East Honiara",
    "West Honiara",
    "Central Guada",
@@ -645,65 +792,43 @@ var chart = new Chart(ctx, {
    "North West"
 
  ],
-
-                       
-                      
-datasets: [
-{
-label: "18-29",
-backgroundColor:   'rgba(64, 72, 152)',
-borderColor:   'rgba(64, 72, 152)',
-borderWidth: 1,
-data: [64,73,64,70,49,52,46,48,34,50,42,33,34,21,35]
-},
-{
-label: "30-59",
-backgroundColor: 'rgba(155, 162, 232)',
-borderColor: 'rgba(155, 162, 232)',
-borderWidth: 1,
-data: [104,112,110,111,113,103,64,90,97,91,101,84,80,84,77]
-},
-{
-label: "60+",
-backgroundColor:  'rgba(122,126,170)',
-borderColor:  'rgba(122,126,170)',
-borderWidth: 1,
-data: [29,9,18,10,21,8,52,23,30,20,16,20,17,24,16]
-}
-]
-};
-
-var chartOptions_b = {
- responsive: true,
- legend: {
-   position: "top"
- },
- title: {
-   display: true,
-   text: "Chart.js Bar Chart"
- },
- scales: {x: 
-    { title:
-       { display: true, text: 'Constituencies' }
-      },
-    y:
-    { title:
-       { display: true, text: 'Count' }
-      },
+    crosshair: true
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Count'
     }
-}
-// function b() {
-//   var ctx_b = document.getElementById("canvas_b").getContext("2d");
-//   window.myBar = new Chart(ctx_b, {
-//     type: "bar",
-//     data: barChartData_b,
-//     options: chartOptions_b
-//   });
-// };
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: 'Age: 18-29',
+    data: [49.9, 71.5, 106.4, 129.2, 144.0, 76.0, 85.6, 45.5, 60.4, 94.1, 25.6, 104.4]
 
+  }, {
+    name: 'Age: 30-59',
+    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
+  }, {
+    name: 'Age: 60+',
+    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
 
-               </script>  
+  }]
+});
+              </script>
                 
              
                 
@@ -757,101 +882,9 @@ var chartOptions_b = {
                   <div class="col-md-12">
                     <div class="container-fluid card">
                       <div class="row">
-                        <div class="col-md-6">
-                          
-                          <canvas id="myChart2"></canvas>
-                          <script>
-                            var ctx = document.getElementById("myChart2");
-                 var myChart2 = new Chart(ctx, {
-                   type: 'pie',
-                   showAllTooltips: true,
-                   data: {
-                     labels: ['Male', 'Female'],
-                     datasets: [{
-                       label: '# of Tomatoes',
-                       data: [12, 19],
-                       backgroundColor: [
-                         'rgba(64,72,152)',
-                         'rgba(155,162,232)'
-                       ],
-                       borderColor: [
-                         'rgba(64,72,152,1)',
-                         'rgba(155,162,232, 1)'
-                       ],
-                       borderWidth: 1
-                     }]
-                   },
-                   options: {
-                      //cutoutPercentage: 40,
-                     responsive: false,
-                     showAllTooltips: true
-                 
-                   }
-                 });
-                 Chart.pluginService.register({
-                       beforeRender: function (chart) {
-                         if (chart.config.options.showAllTooltips) {
-                           // create an array of tooltips
-                           // we can't use the chart tooltip because there is only one tooltip per chart
-                           chart.pluginTooltips = [];
-                           chart.config.data.datasets.forEach(function (dataset, i) {
-                             chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                               chart.pluginTooltips.push(new Chart.Tooltip({
-                                 _chart: chart.chart,
-                                 _chartInstance: chart,
-                                 _data: chart.data,
-                                 _options: chart.options,
-                                 _active: [sector]
-                               }, chart));
-                             });
-                           });
-                 
-                           // turn off normal tooltips
-                           chart.options.tooltips.enabled = false;
-                         }
-                       },
-                       afterDraw: function (chart, easing) {
-                         if (chart.config.options.showAllTooltips) {
-                           // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                           if (!chart.allTooltipsOnce) {
-                             if (easing !== 1)
-                               return;
-                             chart.allTooltipsOnce = true;
-                           }
-                 
-                           // turn on tooltips
-                           chart.options.tooltips.enabled = true;
-                           Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
-                             tooltip.initialize();
-                             tooltip.update();
-                             // we don't actually need this since we are not animating tooltips
-                             tooltip.pivot();
-                             tooltip.transition(easing).draw();
-                           });
-                           chart.options.tooltips.enabled = false;
-                         }
-                       }
-                     })
-                 
-                     var myPieChart = new Chart(ctx, {
-                       type: 'pie',
-                       data: data,
-                       options: {
-                         showAllTooltips: true
-                       }
-                     });
-                 
-                 
-                           </script>  
-                        </div>
-                        <div class="col-md-6">
-                          <img src="./images/Gender.png" class="img-fluid">
-                          <h3 style="font-weight: bold;">Gender Proportions for Pre-Polling survey</h3>
-                          <p>In the pre polling event more women were involved as majority of them
-                          are community leaders and were obliged to represent their communities.</p>
-          
-                        </div>
-                        
+                        <div class="col-md-12">
+                          <div id="gen_img"></div>                         
+                        </div>  
                       </div>
                     </div>
                   </div>
@@ -862,83 +895,77 @@ var chartOptions_b = {
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <canvas id="canvas_g"></canvas>
+                    <div id="gen_bar"></div>
                   </div>
                 </div>
               </div>
               <div id="container" style="width: 75%;">
                
-                <script>
-                  var barChartData_g = {
-  labels: [
-    "East Honiara",
-    "West Honiara",
-    "Central Guada",
-    "Central Honiara",
-    "East Guadalcanal",
-    "Gizo Kolomban",
-    "Maringe kokota",
-    "Aoke Langalanga",
-    "North Vella",
-    "Russell Savo",
-    "Central Makira",
-    "Lau Mbaelelea",
-    "Small Malaita",
-    "Gao Bugotu",
-    "North West"
-
-  ],
-
-                        
-                       
-  datasets: [
-    {
-      label: "Female",
-      backgroundColor:   'rgba(64, 72, 152)',
-      borderColor:   'rgba(64, 72, 152)',
-      borderWidth: 1,
-      data: [98,97,101,96,87,82,86,81,79,81,79,68,64,62,64]
-    },
-    {
-      label: "Male",
-      backgroundColor: 'rgba(155, 162, 232)',
-      borderColor: 'rgba(155, 162, 232)',
-      borderWidth: 1,
-      data: [99,97,91,95,96,81,76,80,82,80,80,69,67,67,64]
-    }
-  ]
-};
-
-var chartOptions_g = {
-  responsive: true,
-  legend: {
-    position: "top"
+               <script>
+                 var colors = ['#404898','#9BA2E8'];
+Highcharts.chart('gen_bar', {
+  chart: {
+    type: 'column'
   },
+  colors: colors,
   title: {
-    display: true,
-    text: "Chart.js Bar Chart"
+    text: 'Gender per constituency'
   },
-  scales: {x: 
-    { title:
-       { display: true, text: 'Constituencies' }
-      },
-    y:
-    { title:
-       { display: true, text: 'Count' }
-      },
+  subtitle: {
+    text: ''
+  },
+  xAxis: {
+    categories: [
+   "East Honiara",
+   "West Honiara",
+   "Central Guada",
+   "Central Honiara",
+   "East Guadalcanal",
+   "Gizo Kolomban",
+   "Maringe kokota",
+   "Aoke Langalanga",
+   "North Vella",
+   "Russell Savo",
+   "Central Makira",
+   "Lau Mbaelelea",
+   "Small Malaita",
+   "Gao Bugotu",
+   "North West"
+
+ ],
+    crosshair: true
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Count'
     }
-}
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: 'Male',
+    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
-// window.onload = function() {
-//   var ctx = document.getElementById("canvasb").getContext("2d");
-//   window.myBar = new Chart(ctx, {
-//     type: "bar",
-//     data: barChartData,
-//     options: chartOptions
-//   });
-// };
+  }, {
+    name: 'Female',
+    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
 
-                </script>
+  }]
+});
+               </script>
                 
              
                 
@@ -1006,91 +1033,65 @@ var chartOptions_g = {
               <p>Where citizens excerised their right to participate</p>
                         </div>
                         <div class="col-md-6">
-                          
-                          <canvas id="myChartp"></canvas>
+                          <div id="donut_part"></div>
                           <script>
-                            var ctx = document.getElementById("myChartp");
-                 var myChart2 = new Chart(ctx, {
-                   type: 'pie',
-                   showAllTooltips: true,
-                   data: {
-                     labels: ['Approached', 'Self-Selected'],
-                     datasets: [{
-                       label: '# of Tomatoes',
-                       data: [68.52, 31.48],
-                       backgroundColor: [
-                         'rgba(64,72,152)',
-                         'rgba(155,162,232)'
-                       ],
-                       borderColor: [
-                         'rgba(64,72,152,1)',
-                         'rgba(155,162,232, 1)'
-                       ],
-                       borderWidth: 1
-                     }]
-                   },
-                   options: {
-                      //cutoutPercentage: 40,
-                     responsive: false,
-                     showAllTooltips: true
-                 
-                   }
-                 });
-                 Chart.pluginService.register({
-                       beforeRender: function (chart) {
-                         if (chart.config.options.showAllTooltips) {
-                           // create an array of tooltips
-                           // we can't use the chart tooltip because there is only one tooltip per chart
-                           chart.pluginTooltips = [];
-                           chart.config.data.datasets.forEach(function (dataset, i) {
-                             chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                               chart.pluginTooltips.push(new Chart.Tooltip({
-                                 _chart: chart.chart,
-                                 _chartInstance: chart,
-                                 _data: chart.data,
-                                 _options: chart.options,
-                                 _active: [sector]
-                               }, chart));
-                             });
-                           });
-                 
-                           // turn off normal tooltips
-                           chart.options.tooltips.enabled = false;
-                         }
-                       },
-                       afterDraw: function (chart, easing) {
-                         if (chart.config.options.showAllTooltips) {
-                           // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                           if (!chart.allTooltipsOnce) {
-                             if (easing !== 1)
-                               return;
-                             chart.allTooltipsOnce = true;
-                           }
-                 
-                           // turn on tooltips
-                           chart.options.tooltips.enabled = true;
-                           Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
-                             tooltip.initialize();
-                             tooltip.update();
-                             // we don't actually need this since we are not animating tooltips
-                             tooltip.pivot();
-                             tooltip.transition(easing).draw();
-                           });
-                           chart.options.tooltips.enabled = false;
-                         }
-                       }
-                     })
-                 
-                     var myPieChart = new Chart(ctx, {
-                       type: 'pie',
-                       data: data,
-                       options: {
-                         showAllTooltips: true
-                       }
-                     });
-                 
-                 
-                           </script>  
+                             var colors = ['#404898','#9BA2E8','#7A7EAA'];
+                            Highcharts.chart('donut_part', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: 0,
+    plotShadow: false
+  },
+  colors: colors,
+  title: {
+    text: 'Voter Selection',
+    align: 'center',
+    verticalAlign: 'middle',
+    y: 60
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  accessibility: {
+    point: {
+      valueSuffix: '%'
+    }
+  },
+  plotOptions: {
+    pie: {
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        style: {
+          fontWeight: 'bold',
+          color: 'white'
+        }
+      },
+      startAngle: -90,
+      endAngle: 90,
+      center: ['50%', '75%'],
+      size: '110%'
+    }
+  },
+  series: [{
+    type: 'pie',
+    name: 'Voter selection',
+    innerSize: '50%',
+    data: [
+      ['Self-Selected', 31.48],     
+      {
+        name: 'Approached',
+        y: 68.52,
+        dataLabels: {
+          enabled: false
+        }
+      }
+    ]
+  }]
+});
+                          </script>
+                          
+                        
                         </div>                    
                         
                       </div>
@@ -1103,83 +1104,78 @@ var chartOptions_g = {
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <canvas id="canvas_p"></canvas>
+                    <div id="res_bar"></div>
+                    <script>
+                      var colors = ['#404898','#9BA2E8'];
+Highcharts.chart('res_bar', {
+chart: {
+ type: 'column'
+},
+colors: colors,
+title: {
+ text: 'Respondent selection per constituency'
+},
+subtitle: {
+ text: ''
+},
+xAxis: {
+ categories: [
+"East Honiara",
+"West Honiara",
+"Central Guada",
+"Central Honiara",
+"East Guadalcanal",
+"Gizo Kolomban",
+"Maringe kokota",
+"Aoke Langalanga",
+"North Vella",
+"Russell Savo",
+"Central Makira",
+"Lau Mbaelelea",
+"Small Malaita",
+"Gao Bugotu",
+"North West"
+
+],
+ crosshair: true
+},
+yAxis: {
+ min: 0,
+ title: {
+   text: 'Count'
+ }
+},
+tooltip: {
+ headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+ pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+   '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+ footerFormat: '</table>',
+ shared: true,
+ useHTML: true
+},
+plotOptions: {
+ column: {
+   pointPadding: 0.2,
+   borderWidth: 0
+ }
+},
+series: [{
+ name: 'Male',
+ data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+}, {
+ name: 'Female',
+ data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+}]
+});
+                    </script> 
                   </div>
                 </div>
               </div>
               <div id="container" style="width: 75%;">
                
-                <script>
-                  var barChartData_p = {
-  labels: [
-    "East Honiara",
-    "West Honiara",
-    "Central Guada",
-    "Central Honiara",
-    "East Guadalcanal",
-    "Gizo Kolomban",
-    "Maringe kokota",
-    "Aoke Langalanga",
-    "North Vella",
-    "Russell Savo",
-    "Central Makira",
-    "Lau Mbaelelea",
-    "Small Malaita",
-    "Gao Bugotu",
-    "North West"
-
-  ],
-
-                        
-                       
-  datasets: [
-    {
-      label: "Self-Selected",
-      backgroundColor:   'rgba(64, 72, 152)',
-      borderColor:   'rgba(64, 72, 152)',
-      borderWidth: 1,
-      data: [15,92,48,155,38,22,70,37,47,13,156,31,23,23,1]
-    },
-    {
-      label: "Male",
-      backgroundColor: 'rgba(155, 162, 232)',
-      borderColor: 'rgba(155, 162, 232)',
-      borderWidth: 1,
-      data: [146,100,143,4,145,175,59,126,90,149,5,97,138,108,193]
-    }
-  ]
-};
-
-var chartOptions_p = {
-  responsive: true,
-  legend: {
-    position: "top"
-  },
-  title: {
-    display: true,
-    text: "Chart.js Bar Chart"
-  },
-  scales: {x: 
-    { title:
-       { display: true, text: 'Constituencies' }
-      },
-    y:
-    { title:
-       { display: true, text: 'Count' }
-      },
-    }
-}
-
-// window.onload = function() {
-//   var ctx = document.getElementById("canvasb").getContext("2d");
-//   window.myBar = new Chart(ctx, {
-//     type: "bar",
-//     data: barChartData,
-//     options: chartOptions
-//   });
-// };
-
-                </script>
+               
                 
              
                 
@@ -1245,102 +1241,80 @@ var chartOptions_p = {
                       <div class="row">
                        
                         <div class="col-md-6">
-                          <canvas id="myChart3"></canvas> 
-                            <script>
-                             var ctx = document.getElementById("myChart3");
-                  var myChart2 = new Chart(ctx, {
-                    type: 'doughnut',
-                    showAllTooltips: true,
-                    data: {
-                      labels: ['Less than 20mins', '5-10 mins', 'Greater than 20 mins'],
-                      datasets: [{
-                        label: '# of Tomatoes',
-                        data: [46.55, 38.1, 15.35],
-                        backgroundColor: [
-                          'rgba(64,72,152)',
-                          'rgba(155,162,232)',
-                          'rgba(122,126,170)'
-                        ],
-                        borderColor: [
-                          'rgba(64,72,152,1)',
-                          'rgba(155,162,232, 1)',
-                          'rgba(122,126,170, 1)'
-                        ],
-                        borderWidth: 1
-                      }]
-                    },
-                    options: {
-                       //cutoutPercentage: 40,
-                      responsive: false,
-                      showAllTooltips: true
-                  
-                    }
-                  });
-                  Chart.pluginService.register({
-                        beforeRender: function (chart) {
-                          if (chart.config.options.showAllTooltips) {
-                            // create an array of tooltips
-                            // we can't use the chart tooltip because there is only one tooltip per chart
-                            chart.pluginTooltips = [];
-                            chart.config.data.datasets.forEach(function (dataset, i) {
-                              chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                                chart.pluginTooltips.push(new Chart.Tooltip({
-                                  _chart: chart.chart,
-                                  _chartInstance: chart,
-                                  _data: chart.data,
-                                  _options: chart.options,
-                                  _active: [sector]
-                                }, chart));
-                              });
-                            });
-                  
-                            // turn off normal tooltips
-                            chart.options.tooltips.enabled = false;
-                          }
-                        },
-                        afterDraw: function (chart, easing) {
-                          if (chart.config.options.showAllTooltips) {
-                            // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                            if (!chart.allTooltipsOnce) {
-                              if (easing !== 1)
-                                return;
-                              chart.allTooltipsOnce = true;
-                            }
-                  
-                            // turn on tooltips
-                            chart.options.tooltips.enabled = true;
-                            Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
-                              tooltip.initialize();
-                              tooltip.update();
-                              // we don't actually need this since we are not animating tooltips
-                              tooltip.pivot();
-                              tooltip.transition(easing).draw();
-                            });
-                            chart.options.tooltips.enabled = false;
-                          }
-                        }
-                      })
-                  
-                      var myPieChart = new Chart(ctx, {
-                        type: 'pie',
-                        data: data,
-                        options: {
-                          showAllTooltips: true
-                        }
-                      });
-                  
-                  
-                            </script>
+                          <div id="time_bar"></div>
+                          <script>
+                            var colors = ['#404898','#9BA2E8','#7A7EAA'];
+                             
+                            Highcharts.chart('time_bar', {
+  chart: {
+    type: 'bar'
+  },
+  colors: colors,
+  title: {
+    text: 'Time taken to polling station by percentage of the population '
+  },
+  subtitle: {
+    text: ''
+  },
+  xAxis: {
+    categories: ['5-20 mins', 'Less than 20 mins', 'Greater than 20 mins'],
+    title: {
+      text: null
+    }
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Percentage form of voters',
+      align: 'high'
+    },
+    labels: {
+      overflow: 'justify'
+    }
+  },
+  tooltip: {
+    valueSuffix: ' '
+  },
+  plotOptions: {
+    bar: {
+      dataLabels: {
+        enabled: true
+      }
+    }
+  },
+  legend: {
+    layout: 'vertical',
+    align: 'right',
+    verticalAlign: 'top',
+    x: -40,
+    y: 80,
+    floating: true,
+    borderWidth: 1,
+    backgroundColor:
+      Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+    shadow: true
+  },
+  credits: {
+    enabled: false
+  },
+  series: [{
+    name: 'Time taken',
+    data: [38.1, 46.55, 15.35]
+  }]
+});
+                          </script>>
+                          
                         </div>
                         <div class="col-md-6">
-                          <img src="./images/time.png" class="img-fluid">
-                          <h4>General</h4>
+                          <!-- <h4 style="color: #404898; font-weight: bold;">Time taken to polling station </h4> -->
+                          <img src="./images/time_poll.drawio.png" class="img-fluid" style="padding-top: 50px;">
+                          <!-- <h4 style="color: #404898; font-weight: bold;">General</h4>
                           <h6 style="color: #404898; font-weight: bold;">5-10 mins</h6>
                           <p>Polling stations were setup in residential areas</p>
                           <h6 style="color: #9BA2E8; font-weight: bold;">Less than 20mins</h6>
                           <p>Polling stations in schools were mostly used</p>                          
                           <h6 style="color: #7a7eaa; font-weight: bold;">Greater than 20 mins</h6>
-                          <p>Most had to use some form of transport to come to the polling station</p>
+                          <p>Most had to use some form of transport to come to the polling station</p> -->
             
                         </div>
             
@@ -1354,90 +1328,80 @@ var chartOptions_p = {
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <canvas id="canvasb"></canvas>
+                    <div id="time_bar2"></div>
                   </div>
                 </div>
               </div>
               <div id="container" style="width: 75%;">
-               
-                <script>
-                  var barChartDatab = {
-  labels: [
-    "East Honiara",
-    "West Honiara",
-    "Central Guada",
-    "Central Honiara",
-    "East Guadalcanal",
-    "Gizo Kolomban",
-    "Maringe kokota",
-    "Aoke Langalanga",
-    "North Vella",
-    "Russell Savo",
-    "Central Makira",
-    "Lau Mbaelelea",
-    "Small Malaita",
-    "Gao Bugotu",
-    "North West"
-
-  ],
-
-                        
-                       
-  datasets: [
-    {
-      label: "5-10mins",
-      backgroundColor:   'rgba(64, 72, 152)',
-      borderColor:   'rgba(64, 72, 152)',
-      borderWidth: 1,
-      data: [71,64,93,89,44,67,65,71,116,50,84,85,89,67,75]
-    },
-    {
-      label: "Less than 20 mins",
-      backgroundColor: 'rgba(155, 162, 232)',
-      borderColor: 'rgba(155, 162, 232)',
-      borderWidth: 1,
-      data: [42,45,28,35,81,76,55,80,40,58,55,77,54,116,91]
-    },
-    {
-      label: "Greater than 20 mins",
-      backgroundColor:  'rgba(122,126,170)',
-      borderColor:  'rgba(122,126,170)',
-      borderWidth: 1,
-      data: [15,10,10,13,34,18,41,10,6,55,44,29,49,11,31]
-    }
-  ]
-};
-
-var chartOptionsb = {
-  responsive: true,
-  legend: {
-    position: "top"
+               <script>
+                 var colors = ['#404898','#9BA2E8','#7A7EAA'];
+Highcharts.chart('time_bar2', {
+  chart: {
+    type: 'column'
   },
+  colors: colors,
   title: {
-    display: true,
-    text: "Chart.js Bar Chart"
+    text: 'Time taken to polling station per constituency'
   },
-  scales: {x: 
-    { title:
-       { display: true, text: 'Constituencies' }
-      },
-    y:
-    { title:
-       { display: true, text: 'Count' }
-      },
+  subtitle: {
+    text: ''
+  },
+  xAxis: {
+    categories: [
+   "East Honiara",
+   "West Honiara",
+   "Central Guada",
+   "Central Honiara",
+   "East Guadalcanal",
+   "Gizo Kolomban",
+   "Maringe kokota",
+   "Aoke Langalanga",
+   "North Vella",
+   "Russell Savo",
+   "Central Makira",
+   "Lau Mbaelelea",
+   "Small Malaita",
+   "Gao Bugotu",
+   "North West"
+
+ ],
+    crosshair: true
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Count'
     }
-}
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: '5-10mins',
+    data: [49.9, 71.5, 106.4, 129.2, 144.0, 76.0, 85.6, 45.5, 60.4, 94.1, 25.6, 104.4]
 
-// window.onload = function() {
-//   var ctx = document.getElementById("canvasb").getContext("2d");
-//   window.myBar = new Chart(ctx, {
-//     type: "bar",
-//     data: barChartData,
-//     options: chartOptions
-//   });
-// };
+  }, {
+    name: 'Less than 20 mins',
+    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
-                </script>
+  }, {
+    name: 'Greater than 20 mins',
+    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+  }]
+});
+               </script>
                 
              
                 
@@ -1501,8 +1465,8 @@ var chartOptionsb = {
                       <div class="row">                       
                         
                         <div class="col-md-6">
-                          <img src="./images/voting-box.png" class="img-fluid center">
-                          <h4>General</h4>
+                          <img src="./images/Where.drawio.png" class="img-fluid center">
+                          <h4 style="color: #404898; font-weight: bold;">General</h4>
                           <h6 style="color: #404898; font-weight: bold;">Yes</h6>
                           <p>Through local advertisements, the local polling stations location was widely shared.</p>
                           <h6 style="color: #9BA2E8; font-weight: bold;">No</h6>
@@ -1511,90 +1475,64 @@ var chartOptionsb = {
             
                         </div>
                         <div class="col-md-6">
-                          <canvas id="myChart_v"></canvas> 
-                            <script>
-                             var ctx = document.getElementById("myChart_v");
-                  var myChart2 = new Chart(ctx, {
-                    type: 'doughnut',
-                    showAllTooltips: true,
-                    data: {
-                      labels: ['Yes', 'No'],
-                      datasets: [{
-                        label: '# of Tomatoes',
-                        data: [97.06,2.94],
-                        backgroundColor: [
-                          'rgba(64,72,152)',
-                          'rgba(155,162,232)'
-                        ],
-                        borderColor: [
-                          'rgba(64,72,152,1)',
-                          'rgba(155,162,232, 1)'
-                        ],
-                        borderWidth: 1
-                      }]
-                    },
-                    options: {
-                       //cutoutPercentage: 40,
-                      responsive: false,
-                      showAllTooltips: true
-                  
-                    }
-                  });
-                  Chart.pluginService.register({
-                        beforeRender: function (chart) {
-                          if (chart.config.options.showAllTooltips) {
-                            // create an array of tooltips
-                            // we can't use the chart tooltip because there is only one tooltip per chart
-                            chart.pluginTooltips = [];
-                            chart.config.data.datasets.forEach(function (dataset, i) {
-                              chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                                chart.pluginTooltips.push(new Chart.Tooltip({
-                                  _chart: chart.chart,
-                                  _chartInstance: chart,
-                                  _data: chart.data,
-                                  _options: chart.options,
-                                  _active: [sector]
-                                }, chart));
-                              });
-                            });
-                  
-                            // turn off normal tooltips
-                            chart.options.tooltips.enabled = false;
-                          }
-                        },
-                        afterDraw: function (chart, easing) {
-                          if (chart.config.options.showAllTooltips) {
-                            // we don't want the permanent tooltips to animate, so don't do anything till the animation runs atleast once
-                            if (!chart.allTooltipsOnce) {
-                              if (easing !== 1)
-                                return;
-                              chart.allTooltipsOnce = true;
-                            }
-                  
-                            // turn on tooltips
-                            chart.options.tooltips.enabled = true;
-                            Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
-                              tooltip.initialize();
-                              tooltip.update();
-                              // we don't actually need this since we are not animating tooltips
-                              tooltip.pivot();
-                              tooltip.transition(easing).draw();
-                            });
-                            chart.options.tooltips.enabled = false;
-                          }
-                        }
-                      })
-                  
-                      var myPieChart = new Chart(ctx, {
-                        type: 'donought',
-                        data: data,
-                        options: {
-                          showAllTooltips: true
-                        }
-                      });
-                  
-                  
-                            </script>
+                          <!-- <img src="./images/Location.drawio.png" class="img-fluid"> -->
+                          <div id="donut_vote"></div>
+                          <script>
+                             var colors = ['#404898','#9BA2E8','#7A7EAA'];
+                            Highcharts.chart('donut_vote', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: 0,
+    plotShadow: false
+  },
+  colors: colors,
+  title: {
+    text: 'knew where <br> to vote',
+    align: 'center',
+    verticalAlign: 'middle',
+    y: 60
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  accessibility: {
+    point: {
+      valueSuffix: '%'
+    }
+  },
+  plotOptions: {
+    pie: {
+      dataLabels: {
+        enabled: true,
+        distance: -50,
+        style: {
+          fontWeight: 'bold',
+          color: 'white'
+        }
+      },
+      startAngle: -90,
+      endAngle: 90,
+      center: ['50%', '75%'],
+      size: '110%'
+    }
+  },
+  series: [{
+    type: 'pie',
+    name: 'Do you know where to vote',
+    innerSize: '50%',
+    data: [
+      ['Yes', 97],     
+      {
+        name: 'No',
+        y: 3,
+        dataLabels: {
+          enabled: false
+        }
+      }
+    ]
+  }]
+});
+                          </script>
                         </div>
             
                       </div>
@@ -1607,97 +1545,80 @@ var chartOptionsb = {
               <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <canvas id="canvas_v"></canvas>
+                    <div id="vote_bar"></div>
                   </div>
                 </div>
               </div>
               <div id="container">
                
                 <script>
-                  var barChartData_v = {
-  labels: [
-    "East Honiara",
-    "West Honiara",
-    "Central Guada",
-    "Central Honiara",
-    "East Guadalcanal",
-    "Gizo Kolomban",
-    "Maringe kokota",
-    "Aoke Langalanga",
-    "North Vella",
-    "Russell Savo",
-    "Central Makira",
-    "Lau Mbaelelea",
-    "Small Malaita",
-    "Gao Bugotu",
-    "North West"
-
-  ],
-
-                        
-                       
-  datasets: [
-    {
-      label: "5-10mins",
-      backgroundColor:   'rgba(64, 72, 152)',
-      borderColor:   'rgba(64, 72, 152)',
-      borderWidth: 1,
-      data: [71,64,93,89,44,67,65,71,116,50,84,85,89,67,75]
-    },
-    {
-      label: "Less than 20 mins",
-      backgroundColor: 'rgba(155, 162, 232)',
-      borderColor: 'rgba(155, 162, 232)',
-      borderWidth: 1,
-      data: [42,45,28,35,81,76,55,80,40,58,55,77,54,116,91]
-    },
-    {
-      label: "Greater than 20 mins",
-      backgroundColor:  'rgba(122,126,170)',
-      borderColor:  'rgba(122,126,170)',
-      borderWidth: 1,
-      data: [15,10,10,13,34,18,41,10,6,55,44,29,49,11,31]
-    }
-  ]
-};
-
-var chartOptions_v = {
-  responsive: true,
-  legend: {
-    position: "top"
+                  var colors = ['#404898','#9BA2E8','#7A7EAA'];
+Highcharts.chart('vote_bar', {
+  chart: {
+    type: 'column'
   },
+  colors: colors,
   title: {
-    display: true,
-    text: "Chart.js Bar Chart"
+    text: 'Voter knowledge on where to vote per constituency'
   },
-  scales: {x: 
-    { title:
-       { display: true, text: 'Constituencies' }
-      },
-    y:
-    { title:
-       { display: true, text: 'Count' }
-      },
+  subtitle: {
+    text: ''
+  },
+  xAxis: {
+    categories: [
+   "East Honiara",
+   "West Honiara",
+   "Central Guada",
+   "Central Honiara",
+   "East Guadalcanal",
+   "Gizo Kolomban",
+   "Maringe kokota",
+   "Aoke Langalanga",
+   "North Vella",
+   "Russell Savo",
+   "Central Makira",
+   "Lau Mbaelelea",
+   "Small Malaita",
+   "Gao Bugotu",
+   "North West"
+
+ ],
+    crosshair: true
+  },
+  yAxis: {
+    min: 0,
+    title: {
+      text: 'Count'
     }
- 
-}
+  },
+  tooltip: {
+    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    footerFormat: '</table>',
+    shared: true,
+    useHTML: true
+  },
+  plotOptions: {
+    column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+    }
+  },
+  series: [{
+    name: '5-10mins',
+    data: [49.9, 71.5, 106.4, 129.2, 144.0, 76.0, 85.6, 45.5, 60.4, 94.1, 25.6, 104.4]
 
-// var mybarchart_v = new chart(ctx_v, {
-//   type:'bar',
-//   data: barChartData,
-//   options: chartOptions
-// })
+  }, {
+    name: 'Less than 20 mins',
+    data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
 
-// window.onload = function v() {
-//   function b(){};
-//   var ctx = document.getElementById("canvas_v").getContext("2d");
-//   window.myBar = new Chart(ctx, {
-//     type: "bar",
-//     data: barChartData,
-//     options: chartOptions
-//   });
-// };
+  }, {
+    name: 'Greater than 20 mins',
+    data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
 
+  }]
+});
                 </script>
                 
              
