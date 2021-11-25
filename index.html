@@ -159,10 +159,13 @@ Highchart Start -->
   
   
         </div>
+
+       
         
         <div class="col-md-7" >
           <div id="mp">
-            <iframe title="[ Solomon Island Polling Participation % ]" aria-label="Map" id="datawrapper-chart-aQzBT" src="https://datawrapper.dwcdn.net/aQzBT/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="377"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            <iframe title="[ Solomon Island Polling Participation % ]" aria-label="Map" id="datawrapper-chart-aQzBT" src="https://datawrapper.dwcdn.net/aQzBT/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="376"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+            </script>
             </script>
             </script>
           </div>
@@ -1025,13 +1028,15 @@ Highcharts.chart('gen_bar', {
                     <div class="container-fluid card">
                       <div class="row">
                         <div class="col-md-6">
-                          <img src="./images/counting.png" class="img-fluid">
+                          <img src="./images/Anu.drawio22.png" class="img-fluid">
                           <h3>Participation was either by: </h3>
+                          <h4 style="color: #404898; font-weight: bold;">Self-selected</h4>
+              <p>Where citizens excerised their right to participate</p>
+              <h4>or</h4>
               <h4 style="color: #9BA2E8; font-weight: bold;">Approached</h4>
               <p>Where citizens were approached by staff</p>
-              <h4>or</h4>
-              <h4 style="color: #404898; font-weight: bold;">Self-selected</h4>
-              <p>Where citizens excerised their right to participate</p>
+              
+              
                         </div>
                         <div class="col-md-6">
                           <div id="donut_part"></div>
@@ -1045,7 +1050,7 @@ Highcharts.chart('gen_bar', {
   },
   colors: colors,
   title: {
-    text: 'Voter Selection',
+    text: '',
     align: 'center',
     verticalAlign: 'middle',
     y: 60
@@ -1079,12 +1084,12 @@ Highcharts.chart('gen_bar', {
     name: 'Voter selection',
     innerSize: '50%',
     data: [
-      ['Self-Selected', 31.48],     
+      ['', 31.48],     
       {
         name: 'Approached',
         y: 68.52,
         dataLabels: {
-          enabled: false
+          enabled: true
         }
       }
     ]
@@ -1307,15 +1312,15 @@ series: [{
                           
                         </div>
                         <div class="col-md-6">
-                          <!-- <h4 style="color: #404898; font-weight: bold;">Time taken to polling station </h4> -->
-                          <img src="./images/time_poll.drawio.png" class="img-fluid" style="padding-top: 50px;">
-                          <!-- <h4 style="color: #404898; font-weight: bold;">General</h4>
+                        
+                          <!-- <img src="./images/time_poll.drawio.png" class="img-fluid" style="padding-top: 50px;"> -->
+                          <h4 style="color: #404898; font-weight: bold; padding-top: 20px;">General</h4>
                           <h6 style="color: #404898; font-weight: bold;">5-10 mins</h6>
                           <p>Polling stations were setup in residential areas</p>
                           <h6 style="color: #9BA2E8; font-weight: bold;">Less than 20mins</h6>
                           <p>Polling stations in schools were mostly used</p>                          
                           <h6 style="color: #7a7eaa; font-weight: bold;">Greater than 20 mins</h6>
-                          <p>Most had to use some form of transport to come to the polling station</p> -->
+                          <p>Most had to use some form of transport to come to the polling station</p>
             
                         </div>
             
@@ -1466,7 +1471,7 @@ Highcharts.chart('time_bar2', {
                       <div class="row">                       
                         
                         <div class="col-md-6">
-                          <img src="./images/Where.drawio.png" class="img-fluid center">
+                          <img src="./images/Anu.drawio.png" class="center" height="180px">
                           <h4 style="color: #404898; font-weight: bold;">General</h4>
                           <h6 style="color: #404898; font-weight: bold;">Yes</h6>
                           <p>Through local advertisements, the local polling stations location was widely shared.</p>
@@ -1488,7 +1493,7 @@ Highcharts.chart('time_bar2', {
   },
   colors: colors,
   title: {
-    text: 'knew where <br> to vote',
+    text: '',
     align: 'center',
     verticalAlign: 'middle',
     y: 60
